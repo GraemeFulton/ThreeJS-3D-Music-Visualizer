@@ -3,6 +3,8 @@ Code related to <a href="Seeing Sounds with Three.js">Seeing Sounds with Three.j
 
 'Seeing Sounds with Three.js' is a tutorial series I have been writing on creative coding. The series provides an introduction the world of three.js through developing a music visualizer. 
 
+# Tutorial List
+
 <a href="http://www.graemefulton.com/writings/post/seeing-sounds-with-threejs-webgl-intro">Seeing Sounds with ThreeJS + WebGL [Intro]</a>
 
 <a href="http://www.graemefulton.com/writings/post/seeing-sounds-part-1-creating-the-star-field">Seeing Sounds [Part 1]: Creating the star field</a>
