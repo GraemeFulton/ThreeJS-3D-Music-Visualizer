@@ -1,5 +1,5 @@
 # three-js-visualizerOO
-Code related to <a href="Seeing Sounds with Three.js">Seeing Sounds with Three.js project</a>
+The object oriented codebase for my <a href="Seeing Sounds with Three.js">Seeing Sounds with Three.js</a> tutorial series.
 
 'Seeing Sounds with Three.js' is a tutorial series I have been writing on creative coding. The series provides an introduction the world of three.js through developing a music visualizer. 
 
