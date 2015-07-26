@@ -37,9 +37,9 @@
   function TerrainMatrix(){
     
     this.floor = [];
-    this.tileHeight=400;
-    this.tileWidth=400;
-    this.tileRowNumber = 3;
+    this.tileHeight=800;
+    this.tileWidth=800;
+    this.tileRowNumber = 1;
     
   }
   
@@ -55,20 +55,11 @@
      * @TODO: create the matrix of terrains - need to add 9 bits of terrain
      */
     createTerrainMatrix:function(scene, perlinNoise){
-          
-          var xPos=0;
-          //we want a 3 by 3 matrix
-          for(var x = 1; x<4; x+=1){
-            console.log(x)
-            if(x==1){
-              xPos= -this.tileWidth;
-            }
-            else if(x==2){
-              xPos= this.tileWidth;
-            }
-            else if (x==3){
-              xPos = 0
-            }
+
+          //we want a 2 by 2 matrix
+          for(var row = 0; row<2; row+=1){
+            
+            var xPos = this.getXPosition(row);
           
             //every 100px on the z axis, add a bit of ground
             for ( var z= this.tileHeight; z > (this.tileHeight * -this.tileRowNumber); z-=this.tileHeight ) {
@@ -125,6 +116,36 @@
            
         }
        
+     },
+     /**
+      * getXPosition
+      * @param: int row
+      * @returns: an x Position for the row
+      */
+     getXPosition:function(row){
+       /**
+        * for the first row, return 'x' as
+        * minus the width of the tile so 
+        * it is on the left
+        */
+        if(row==0){
+              return -this.tileWidth;
+            }
+       /**
+        * for the second row, return 'x' as
+        * 0, so it in the center
+        */
+         else if(row==1){
+             return 0;
+         }
+       /**
+        * for the third row, return 'x' as
+        * plus the tile width, 
+        * so it on the right
+        */
+        else if (row==2){
+          return this.tileWidth;
+        }
      }
     
   };
