@@ -39,7 +39,11 @@
     this.floor = [];
     this.tileHeight=800;
     this.tileWidth=800;
+<<<<<<< HEAD
     this.tileRowNumber = 2;
+=======
+    this.tileRowNumber = 1;
+>>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
     
   }
   
@@ -62,7 +66,11 @@
             var xPos = this.getXPosition(row);
           
             //every 100px on the z axis, add a bit of ground
+<<<<<<< HEAD
             for ( var z= this.tileHeight; z > (this.tileHeight * -(this.tileRowNumber-1)); z-=this.tileHeight ) {
+=======
+            for ( var z= this.tileHeight; z > (this.tileHeight * -this.tileRowNumber); z-=this.tileHeight ) {
+>>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
         
               //Create the perlin noise for the surface of the ground
       	      var perlinSurface = new PerlinSurface(perlinNoise, this.tileWidth, this.tileHeight);
@@ -89,7 +97,11 @@
      * when the camera gets past the first terrain, put the other in front of it
      */
      moveWithCamera(camera){
+<<<<<<< HEAD
         // loop through each terrain
+=======
+        // loop through each star
+>>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
         for(var i=0; i<this.floor.length; i++) {
           
           //if the camera has moved past the entire square, move the square
@@ -148,4 +160,8 @@
         }
      }
     
+<<<<<<< HEAD
   };
+=======
+  };
+>>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827

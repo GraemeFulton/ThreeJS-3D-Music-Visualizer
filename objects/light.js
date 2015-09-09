@@ -20,4 +20,8 @@
       scene.add( this.directionalLight );
     
     }
+<<<<<<< HEAD
   };
+=======
+  };
+>>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
