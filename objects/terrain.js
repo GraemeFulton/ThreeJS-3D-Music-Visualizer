@@ -20,13 +20,10 @@
       this.geometry.computeFaceNormals();
       this.geometry.computeVertexNormals();
       
-<<<<<<< HEAD
       this.groundMaterial.map = new THREE.ImageUtils;
       this.groundMaterial.map.wrapS = this.groundMaterial.map.wrapT = THREE.RepeatWrapping;
       this.groundMaterial.map.repeat.set(1024, 1024);
 
-=======
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
       //create the ground form the geometry and material
       this.ground = new THREE.Mesh(this.geometry,this.groundMaterial); 
   }
@@ -47,14 +44,9 @@
   Terrain.prototype={
     
     constructor: Terrain,
-<<<<<<< HEAD
     
     addGround:function(scene, perlinNoise){
         for ( var z= 0; z < 1; z++ ) {
-=======
-    addGround:function(scene, perlinNoise){
-        for ( var z= -1600; z < 1600; z+=800 ) {
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
     
   	      var floor = new Ground(perlinNoise);
           var ground = floor.ground;
@@ -71,10 +63,7 @@
           this.floor.push(ground); 
         }
     },
-<<<<<<< HEAD
     
-=======
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
     animateFloor(){
         // loop through each star
         for(var i=0; i<this.floor.length; i++) {
@@ -89,8 +78,4 @@
         }
     }
     
-<<<<<<< HEAD
   };
-=======
-  };
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827

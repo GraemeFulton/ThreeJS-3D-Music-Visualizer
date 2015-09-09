@@ -30,23 +30,14 @@
           var sphere = star.starShape;
     
           // This time we give the sphere random x and y positions between -500 and 500
-<<<<<<< HEAD
           sphere.position.x = this.randomBetween(-800, 800);
           sphere.position.y = this.randomBetween(50, 300);
-=======
-          sphere.position.x = Math.random() * 1000 - 500;
-          sphere.position.y = Math.random() * 1000 - 500;
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
     
           // Then set the z position to where it is in the loop (distance of camera)
           sphere.position.z = z;
     
           // scale it up a bit
-<<<<<<< HEAD
           sphere.scale.x = sphere.scale.y = 1.5;
-=======
-          sphere.scale.x = sphere.scale.y = 2;
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
     
           //add the sphere to the scene
           scene.add( sphere );
@@ -55,17 +46,12 @@
           this.stars.push(sphere); 
         }
     },
-<<<<<<< HEAD
     animateStars:function(camera){
-=======
-    animateStars:function(){
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
       // loop through each star
       for(var i=0; i<this.stars.length; i++) {
         
         var star = this.stars[i]; 
           
-<<<<<<< HEAD
         // move it forward by a 50th of its array position each time 
         star.position.z +=  i/50;   
         
@@ -109,14 +95,3 @@
     }
     
   };
-=======
-        // move it forward by a 10th of its array position each time 
-        star.position.z +=  i/10;
-          
-        // once the star is too close, reset its z position
-        if(star.position.z>1000) star.position.z-=2000;   
-      }
-    }
-    
-  };
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827

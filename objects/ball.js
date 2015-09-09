@@ -10,11 +10,7 @@
         color: '#00abb1',
         // dark
         emissive: '#006063',
-<<<<<<< HEAD
         shininess: 10 
-=======
-        shininess: 500 
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
       });
 	  this.ballShape = new THREE.Mesh(this.geometry, this.material);
   }
@@ -69,8 +65,4 @@
       }
     }
     
-<<<<<<< HEAD
   };
-=======
-  };
->>>>>>> f44091ae89266fa8fd6a89909e50248ac8b5d827
