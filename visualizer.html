@@ -2,25 +2,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Starfield Tutorial</title>
+  <title>Seeing Sounds</title>
   <meta charset="utf-8">
 </head>
 <body style="margin:0px;">
   
-  
   <script src="libs/three.js"></script>
+  
+  <!-- Physics --> 
+  <script src="libs/physics/physi.js"></script>
+  <script>
+      Physijs.scripts.worker = "libs/physics/physijs_worker.js";
+      Physijs.scripts.ammo = 'ammo.js';
+  </script>
+  
+  <!-- load libs -->
   <script src="libs/perlin.js"></script>
   <script src="libs/THREEx.KeyboardState.js"></script> 
   <script src="libs/tween.min.js"></script> 
   
+  <!-- load objects -->
   <script src="objects/starfield.js"></script>
   <script src="objects/terrainMatrix.js"></script>
   <script src="objects/light.js"></script>
   <script src="objects/ball.js"></script>
   <script src="objects/cameraControls.js"></script>
+  <script src ="objects/audio/AudioPlayer.js"></script>
     
+  <!-- main script--> 
   <script>
-    
   /**
    * Main Visualizer
    */
@@ -30,20 +40,17 @@
     this.keyboard = new THREEx.KeyboardState();
     this.clock = new THREE.Clock();
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-    this.scene =  new THREE.Scene();
+    this.scene =  new Physijs.Scene();
     this.renderer = new THREE.WebGLRenderer();;
 
     this.starField = new StarField;
     this.light = new Light();
-    this.terrain = new TerrainMatrix();
+    this.terrain;
     
     this.balls = new BallTerrain();
+    this.audioPlayer = new AudioPlayer();
     
     this.cameraControls = new CameraControls();
-    
-    //create perlin noise object
-    this.date = new Date();
-    this.pn = new Perlin('rnd' + this.date.getTime());
 
   }
   
@@ -63,14 +70,20 @@
     
       this.starField.addStars(this.scene);
       this.light.addLight(this.scene);
-      this.terrain.createTerrainMatrix(this.scene, this.pn);
-      
+      this.terrain = new TerrainMatrix(this.scene);
+      this.terrain.createTerrainMatrix();
+      this.balls.addBalls(this.scene);
+      this.audioPlayer.playMusic();
+      this.scene.setGravity(new THREE.Vector3( 0, -80, 0 ));
+
     },
     render:function(){
+      this.scene.simulate();
       var localRenderer = this;
      //get the frame
      requestAnimationFrame( function(){localRenderer.render();} );
      //render the scene
+     this.renderer.setClearColor( 0x000646, 1);
      this.renderer.render( this.scene, this.camera );
      this.starField.animateStars(this.camera, this.scene);
      
@@ -78,6 +91,7 @@
      //this.balls.animateBalls();
      //this.terrain.animateFloor();
      this.terrain.moveWithCamera(this.camera);
+     this.balls.moveWithCamera(this.camera);
      this.cameraControls.update(this.camera, this.keyboard, this.clock);
     }
     
@@ -86,6 +100,7 @@
  var viz = new Visualizer;
  viz.init();
  viz.render();
+ 
 
   
   

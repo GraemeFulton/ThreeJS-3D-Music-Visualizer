@@ -12,7 +12,12 @@
         emissive: '#006063',
         shininess: 10 
       });
-	  this.ballShape = new THREE.Mesh(this.geometry, this.material);
+	  this.ballShape = new Physijs.SphereMesh(
+                        new THREE.IcosahedronGeometry( 4, 2 ),
+                        new THREE.MeshLambertMaterial(),
+                        undefined,
+                        { restitution: Math.random() * 1.5 }
+                    );
   }
   
   /**
@@ -38,8 +43,8 @@
           var sphere = ball.ballShape;
     
           // This time we give the sphere random x and y positions between -500 and 500
-          sphere.position.x = Math.random() * 400 - 200;
-          sphere.position.y = -10;
+          sphere.position.x = this.randomBetween(-1500, 1500);
+          sphere.position.y = 20;
     
           // Then set the z position to where it is in the loop (distance of camera)
           sphere.position.z = z;
@@ -63,6 +68,70 @@
         // once the star is too close, reset its z position
         if(ball.position.z>1200) ball.position.z-=2000;   
       }
+    },
+     /**
+     * moveWithCamera
+     * when the camera gets past the first terrain, put the other in front of it
+     */
+     
+   moveWithCamera:function(camera){
+     var reGenPos = 800;
+     var dropHeight= 80;
+      // loop through each star
+      for(var i=0; i<this.balls.length; i++) {
+        
+        var ball = this.balls[i]; 
+          
+        // move it forward by a 50th of its array position each time 
+
+                   // ball.__dirtyPosition = true;  
+        
+       //if the camera has moved past the entire square, move the square
+        if((ball.position.z - 1000)>camera.position.z){
+                    ball.position.z +=  i/50; 
+            ball.position.z-=((reGenPos+(i*2))*2);
+            ball.position.y=dropHeight;
+                        ball.__dirtyPosition = true;
+          }
+         //if the camera has moved past the entire square in the opposite direction, move the square the opposite way
+          else if((ball.position.z + 1000)<camera.position.z){
+                ball.position.z +=  i/50;     
+            ball.position.z+=((reGenPos+(i*2))*2);
+                        ball.position.y=dropHeight;
+            ball.__dirtyPosition = true;
+          } 
+       
+       
+       //x positions
+       else if((ball.position.x - 1000)>camera.position.x){
+                 ball.position.z +=  i/50;    
+            ball.position.x-=((reGenPos+(i*2))*2);
+                        ball.position.y=dropHeight;
+                        ball.__dirtyPosition = true;
+          }
+           //if the camera has moved past the entire square in the opposite direction, move the square the opposite way
+          else if((ball.position.x + 1000)<camera.position.x){
+                ball.position.z +=  i/50;     
+            ball.position.x+=((reGenPos+(i*2))*2);
+                        ball.position.y=dropHeight;
+                        ball.__dirtyPosition = true;
+          }
+        
+        
+      }
+    },
+     /**
+     * randomBetween
+     * @params: min, max
+     * @returns: random number between min and max
+     */
+    randomBetween:function(min, max) {
+      if (min < 0) {
+          return min + Math.random() * (Math.abs(min)+max);
+      }else {
+          return min + Math.random() * max;
+      }
     }
+    
     
   };
