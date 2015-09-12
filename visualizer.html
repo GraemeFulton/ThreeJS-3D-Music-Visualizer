@@ -36,7 +36,8 @@
    */
   
   function Visualizer(){
-  
+    this.audioPlayer = new AudioPlayer();
+    
     this.keyboard = new THREEx.KeyboardState();
     this.clock = new THREE.Clock();
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
@@ -47,8 +48,7 @@
     this.light = new Light();
     this.terrain;
     
-    this.balls = new BallTerrain();
-    this.audioPlayer = new AudioPlayer();
+    this.balls = new BallTerrain(this.audioPlayer);
     
     this.cameraControls = new CameraControls();
 
@@ -92,6 +92,8 @@
      //this.terrain.animateFloor();
      this.terrain.moveWithCamera(this.camera);
      this.balls.moveWithCamera(this.camera);
+     this.terrain.respondToAudio(this.audioPlayer.boost, this.camera);
+     
      this.cameraControls.update(this.camera, this.keyboard, this.clock);
     }
     

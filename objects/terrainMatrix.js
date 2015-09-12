@@ -104,20 +104,20 @@
           else if((this.floor[i].position.z + this.tileHeight)<camera.position.z){
             
             this.floor[i].position.z+=(this.tileHeight*2);
-                        this.floor[i].__dirtyPosition = true;
+                       this.floor[i].__dirtyPosition = true;
           }
           
           //x positions
           else if((this.floor[i].position.x - this.tileWidth)>camera.position.x){
             
             this.floor[i].position.x-=(this.tileWidth*2);
-                        this.floor[i].__dirtyPosition = true;
+                this.floor[i].__dirtyPosition = true;
           }
           //if the camera has moved past the entire square in the opposite direction, move the square the opposite way
           else if((this.floor[i].position.x + this.tileWidth)<camera.position.x){
             
             this.floor[i].position.x+=(this.tileWidth*2);
-                        this.floor[i].__dirtyPosition = true;
+                   this.floor[i].__dirtyPosition = true;
           }
            
         }
@@ -219,6 +219,42 @@
 
        
        
-     }
+     },
+    /**
+     * animate with audio
+     */
+    respondToAudio:function(audioBoost, cam){
+      
+      var geo = new THREE.Geometry();
+      
+      var newVertex =[]
+        for(var i=0; i<this.floor.length; i++) {
+                    
+             var tile = this.floor[i]; 
+             tile.__dirtyPosition = true;                  
+             
+           for (var p = 0, l = tile.geometry.vertices.length; p < l; p++) {
+            var vertex = tile.geometry.vertices[p];
+            
+            var value = - this.perlinNoise.noise(vertex.x / 130, vertex.y /130, 1000);
+            vertex.z = value*(audioBoost*2);
+
+            newVertex[p]=vertex;
+          }
+                                tile.geometry.dynamic = true
+                                tile.geometry.verticesNeedUpdate = true;    
+                                
+                                tile.geometry.vertices=newVertex; 
+       
+                                this.floor[i]   = tile
+  
+          }
+      if(cam.position.y<220)
+  cam.position.y=cam.position.y+(audioBoost/50) 
+  
+  else{
+      cam.position.y=cam.position.y-(audioBoost/150) 
+  }     
+    },
     
   };

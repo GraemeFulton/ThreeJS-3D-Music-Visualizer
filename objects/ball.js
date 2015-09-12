@@ -21,15 +21,16 @@
   }
   
   /**
-   * Starfield 
+   * ball field 
    */
   
-  function BallTerrain(){
+  function BallTerrain(audioPlayer){
     this.balls = [];
+    this.audioBoost = audioPlayer.boost
   }
   
   /**
-   * Starfield functions
+   * ball field functions
    */
   BallTerrain.prototype = {
     
@@ -77,7 +78,7 @@
    moveWithCamera:function(camera){
      var reGenPos = 800;
      var dropHeight= 80;
-      // loop through each star
+      // loop through each ball
       for(var i=0; i<this.balls.length; i++) {
         
         var ball = this.balls[i]; 
@@ -120,6 +121,21 @@
         
       }
     },
+    /**
+     * animate with audio
+     */
+    respondToAudio:function(){
+      
+        for(var i=0; i<this.balls.length; i++) {
+                    
+             var ball = this.balls[i]; 
+                        ball.__dirtyPosition = true;                  
+             ball.position.y = this.audioBoost
+         }
+          
+      
+    },
+    
      /**
      * randomBetween
      * @params: min, max
