@@ -249,12 +249,10 @@
                                 this.floor[i]   = tile
   
           }
-      if(cam.position.y<220)
+      if(cam.position.y<80)
   cam.position.y=cam.position.y+(audioBoost/50) 
   
-  else{
-      cam.position.y=cam.position.y-(audioBoost/150) 
-  }     
+   cam.position.z-=(audioBoost/6)    
     },
     
   };
