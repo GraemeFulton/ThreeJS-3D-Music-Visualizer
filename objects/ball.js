@@ -24,9 +24,9 @@
    * ball field 
    */
   
-  function BallTerrain(audioPlayer){
+  function BallTerrain(audioAnalyser){
     this.balls = [];
-    this.audioBoost = audioPlayer.boost
+    this.audioBoost = audioAnalyser.boost
   }
   
   /**

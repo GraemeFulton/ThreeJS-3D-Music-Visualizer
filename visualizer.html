@@ -27,7 +27,7 @@
   <script src="objects/light.js"></script>
   <script src="objects/ball.js"></script>
   <script src="objects/cameraControls.js"></script>
-  <script src ="objects/audio/AudioPlayer.js"></script>
+  <script src ="objects/audio/audioAnalyser.js"></script>
     
   <!-- main script--> 
   <script>
@@ -36,7 +36,7 @@
    */
   
   function Visualizer(){
-    this.audioPlayer = new AudioPlayer();
+    this.audioAnalyser = new AudioAnalyser('objects/audio/sierra.ogg');
     
     this.keyboard = new THREEx.KeyboardState();
     this.clock = new THREE.Clock();
@@ -48,7 +48,7 @@
     this.light = new Light();
     this.terrain;
     
-    this.balls = new BallTerrain(this.audioPlayer);
+    this.balls = new BallTerrain(this.audioAnalyser);
     
     this.cameraControls = new CameraControls();
 
@@ -73,7 +73,7 @@
       this.terrain = new TerrainMatrix(this.scene);
       this.terrain.createTerrainMatrix();
       this.balls.addBalls(this.scene);
-      this.audioPlayer.playMusic();
+      this.audioAnalyser.play();
       this.scene.setGravity(new THREE.Vector3( 0, -80, 0 ));
 
     },
@@ -92,7 +92,7 @@
      //this.terrain.animateFloor();
      this.terrain.moveWithCamera(this.camera);
      this.balls.moveWithCamera(this.camera);
-     this.terrain.respondToAudio(this.audioPlayer.boost, this.camera);
+     this.terrain.respondToAudio(this.audioAnalyser.boost, this.camera);
      
      this.cameraControls.update(this.camera, this.keyboard, this.clock);
     }
