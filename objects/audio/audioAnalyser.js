@@ -4,16 +4,15 @@
    */
    
   function AudioAnalyser(soundPath){
-    
-      this.sound =soundPath;
-      this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      this.source;
-      this.request = new XMLHttpRequest();
       
-      //from https://github.com/srchea/Sound-Visualizer/blob/master/js/audio.js
-      this.source, this.sourceJs;
-      this.analyser;
-      this.audioArray = new Array();
+      //set sound path to path argument
+      this.sound = soundPath;
+      
+      this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      this.request = new XMLHttpRequest();
+      this.source = this.audioCtx.createBufferSource();              
+
+      this.sourceJs, this.analyser, this.audioArray = new Array();
       
       
       //publicly accessible music attributes
@@ -32,8 +31,6 @@
     // decodeAudioData to decode it and stick it in a buffer.
     // Then we put the buffer into the source
     loadAudio:function(){
-
-        this.source = this.audioCtx.createBufferSource();        
     
         this.request.open('GET', this.sound, true);
         this.request.responseType = 'arraybuffer';
