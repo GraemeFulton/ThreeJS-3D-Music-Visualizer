@@ -61,19 +61,16 @@
           this.sourceJs = this.audioCtx.createScriptProcessor(2048, 1, 1);
           this.sourceJs.buffer = buffer;
           this.sourceJs.connect(this.audioCtx.destination);
+          
           this.analyser = this.audioCtx.createAnalyser();
           this.analyser.smoothingTimeConstant = 0.6;
           this.analyser.fftSize = 512;
-
+          this.analyser.connect(this.sourceJs);
           
           this.source.buffer = buffer;
           this.source.connect(this.audioCtx.destination);
           this.source.loop = true;
-            
-          /**from https://github.com/srchea/Sound-Visualizer/blob/master/js/audio.js */
           this.source.connect(this.analyser);
-          this.analyser.connect(this.sourceJs);
-          this.source.connect(this.audioCtx.destination);
           
           this.sourceJs.onaudioprocess = function(e) {
               audioAnalyserInstance.analyseBoost();
