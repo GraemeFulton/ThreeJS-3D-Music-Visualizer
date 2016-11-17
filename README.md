@@ -1,5 +1,5 @@
 #Seeing Sounds with Three.js
-
+![header](https://gfulton-images.s3.amazonaws.com/2015/Dec/a77c9b93142db7e47dcb1effde43c14f-1449307608685.jpg)
 <p>This is a tutorial series I have been writing, and very much a work in progress. The series provides an introduction the world of three.js through developing a music visualizer. The tutorials created and code used so far can be seen below:</p>
 <h3>Contents</h3>
 <h5>Three.js Basics</h5>
